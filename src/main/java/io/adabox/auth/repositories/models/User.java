@@ -1,6 +1,8 @@
 package io.adabox.auth.repositories.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,6 +22,7 @@ import java.util.Set;
 @Setter
 @ToString
 @Table(name = "users")
+@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class User {
 
 	@Id
@@ -59,7 +62,7 @@ public class User {
 
 	@Size(max = 250)
 	@Column(name = "image_url")
-	private String imageURL;
+	private String imageUrl;
 
 	@Size(max = 250)
 	@Column(name = "cover_url")
