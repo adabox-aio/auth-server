@@ -1,0 +1,36 @@
+
+######################
+# Maven
+######################
+/logs/
+/target/
+/.settings/
+/.classpath
+/.project
+
+######################
+# Maven Wrapper
+######################
+!.mvn/wrapper/maven-wrapper.jar
+
+
+######################
+# Maven plugins noise
+######################
+dependency-reduced-pom.xml
+pom.xml.versionsBackup
+
+
+######################
+# IntelliJ Idea noise
+######################
+.idea
+*.iws
+*.ipr
+*.iml
+*.releaseBackup
+atlassian-ide-plugin.xml
+
+src/main/webapp/META-INF/MANIFEST\.MF
+logs/
+/src/main/webapp/swagger/swagger.json
