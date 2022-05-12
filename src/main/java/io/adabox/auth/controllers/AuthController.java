@@ -135,7 +135,7 @@ public class AuthController {
                     user.setRoles(roles);
                     user.setStakeKey(stakeKeyAddress.getAddress());
                     user.setWalletAddress(walletAddressDecoded);
-                    user.setImageURL("https://avatars.dicebear.com/api/personas/" + stakeKeyAddress.getAddress() + ".svg");
+                    user.setImageUrl("https://avatars.dicebear.com/api/personas/" + stakeKeyAddress.getAddress() + ".svg");
                     RandomUser randomUser = objectMapper.readValue(new URL("https://randomuser.me/api/?seed=" + stakeKeyAddress.getAddress() + "&inc=login&noinfo"), RandomUser.class);
                     user.setUsername(randomUser.getUsername());
                     user.setPreferredLanguage("en");
