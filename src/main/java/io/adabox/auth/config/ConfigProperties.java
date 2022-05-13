@@ -4,17 +4,16 @@ import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.List;
+
 @Data
 @Configuration
-@ConfigurationProperties(prefix = "cardano")
+@ConfigurationProperties(prefix = "config")
 public class ConfigProperties {
 
+    private List<String> firewallWhitelist;
+    private String cypherKey;
+    private String appSecret;
     private String jwtSecretKey;
-    private String jwtExpirationMs;
-    private Network network;
-    private String blockfrostApiKeyMainnet;
-    private String blockfrostApiKeyTestnet;
-    private String websiteUrl;
-    private String explorerUrl;
-    private String apiUrl;
+    private Long jwtExpirationMs;
 }

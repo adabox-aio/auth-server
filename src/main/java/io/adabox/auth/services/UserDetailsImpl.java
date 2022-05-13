@@ -17,18 +17,17 @@ public class UserDetailsImpl implements UserDetails {
 
     private User user;
     private Collection<? extends GrantedAuthority> authorities;
-    private String nonce;
 
-    public UserDetailsImpl(User user, Collection<? extends GrantedAuthority> authorities, String nonce) {
+    public UserDetailsImpl(User user, Collection<? extends GrantedAuthority> authorities) {
         this.user = user;
         this.authorities = authorities;
-        this.nonce = nonce;
     }
-    public static UserDetailsImpl build(User user, String nonce) {
+
+    public static UserDetailsImpl build(User user) {
         List<GrantedAuthority> authorities = user.getRoles().stream()
                 .map(role -> new SimpleGrantedAuthority(role.getName().name()))
                 .collect(Collectors.toList());
-        return new UserDetailsImpl(user, authorities, nonce);
+        return new UserDetailsImpl(user, authorities);
     }
 
     @Override
@@ -38,12 +37,12 @@ public class UserDetailsImpl implements UserDetails {
 
     @Override
     public String getPassword() {
-        return nonce;
+        return user.getNonce();
     }
 
     @Override
     public String getUsername() {
-        return user.getStakeKey();
+        return user.getUsername();
     }
 
     @Override
@@ -63,6 +62,6 @@ public class UserDetailsImpl implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return !user.isBanned();
     }
 }

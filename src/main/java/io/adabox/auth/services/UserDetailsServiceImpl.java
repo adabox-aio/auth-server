@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,12 +13,10 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     private final UserRepository userRepository;
-    private final NonceService nonceService;
 
     @Autowired
-    public UserDetailsServiceImpl(UserRepository userRepository, NonceService nonceService) {
+    public UserDetailsServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
-        this.nonceService = nonceService;
     }
 
     @Override
@@ -27,6 +24,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(String stakeKey) throws UsernameNotFoundException {
         User user = userRepository.findByStakeKey(stakeKey)
                 .orElseThrow(() -> new UsernameNotFoundException("User Not Found with stakeKey: " + stakeKey));
-        return UserDetailsImpl.build(user, nonceService.getIfPresent(stakeKey));
+        return UserDetailsImpl.build(user);
     }
 }

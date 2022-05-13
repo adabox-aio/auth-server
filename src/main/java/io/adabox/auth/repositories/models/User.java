@@ -34,10 +34,10 @@ public class User {
 	@Column(name = "stake_key", nullable = false)
 	private String stakeKey;
 
-	@NotBlank
-	@Size(max = 108)
-	@Column(name = "wallet_address", nullable = false)
-	private String walletAddress;
+	@JsonIgnore
+	@Size(max = 64)
+	@Column(name = "nonce")
+	private String nonce;
 
 	@Email
 	@Size(max = 64)
