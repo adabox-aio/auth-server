@@ -29,6 +29,7 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	@JsonIgnore
 	@NotBlank
 	@Size(max = 64)
 	@Column(name = "stake_key", nullable = false)
